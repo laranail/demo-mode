@@ -11,6 +11,8 @@ use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Demo\Mode\Events\DemoModeDisabled;
 use Simtabi\Laranail\Demo\Mode\Events\DemoModeEnabled;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
 use Simtabi\Laranail\Demo\Mode\Features\FeatureRegistry;
 use Simtabi\Laranail\Demo\Mode\Reset\ResetManager;
 use Simtabi\Laranail\Demo\Mode\State\BypassResolver;
@@ -158,6 +160,16 @@ final class DemoMode
         $this->features->protect(...$features);
 
         return $this;
+    }
+
+    /**
+     * Begin a fluent per-model write rule.
+     *
+     * @param  class-string  $class
+     */
+    public function rule(string $class): DemoRule
+    {
+        return $this->app->make(DemoRuleRegistry::class)->for($class);
     }
 
     public function permit(string ...$features): self

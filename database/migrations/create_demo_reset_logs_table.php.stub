@@ -1,0 +1,27 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('demo_reset_logs', function (Blueprint $table): void {
+            $table->id();
+            $table->string('strategy');
+            $table->json('scope')->nullable();
+            $table->timestamp('created_at')->nullable();
+
+            $table->index('created_at');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('demo_reset_logs');
+    }
+};
