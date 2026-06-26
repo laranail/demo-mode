@@ -1,0 +1,120 @@
+{
+    "name": "laranail/demo-mode",
+    "description": "Comprehensive, granular, license-aware demo/sandbox controller for Laravel products — read-only & write guards, per-model/route/feature gating, reset/restore strategies, per-visitor sandboxing, demo accounts and banner. Complements laranail/license-verifier without re-implementing it. CLI/TUI-first.",
+    "keywords": [
+        "laravel",
+        "demo",
+        "demo-mode",
+        "sandbox",
+        "read-only",
+        "reset",
+        "licensing",
+        "laranail"
+    ],
+    "homepage": "https://opensource.simtabi.com/demo-mode/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simtabi LLC",
+            "email": "opensource@simtabi.com",
+            "homepage": "https://opensource.simtabi.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/laranail/demo-mode/issues",
+        "source": "https://github.com/laranail/demo-mode",
+        "docs": "https://opensource.simtabi.com/demo-mode/docs/"
+    },
+    "require": {
+        "php": "^8.4 || ^8.5",
+        "illuminate/contracts": "^13.0",
+        "illuminate/support": "^13.0",
+        "illuminate/console": "^13.0",
+        "illuminate/http": "^13.0",
+        "illuminate/database": "^13.0",
+        "laranail/package-tools": "^1.0",
+        "laranail/console": "^1.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.8",
+        "orchestra/testbench": "^10.6 || ^11.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-arch": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "rector/rector": "^2.0"
+    },
+    "suggest": {
+        "laranail/license-verifier": "License-aware demo activation (trial/grace/expiry/entitlements) via the LicenseGateway adapter.",
+        "spatie/laravel-db-snapshots": "Enables the `snapshot` reset strategy.",
+        "spatie/laravel-backup": "Enables the `backup-restore` reset strategy.",
+        "stancl/tenancy": "Enables the per-visitor `tenant` sandbox integration."
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../package/tools"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Simtabi\\Laranail\\Demo\\Mode\\": "src/",
+            "Simtabi\\Laranail\\Demo\\Mode\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Simtabi\\Laranail\\Demo\\Mode\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest --colors=always",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "lint": [
+            "@pint",
+            "@analyse",
+            "@rector"
+        ],
+        "pint": "vendor/bin/pint --test",
+        "format": "vendor/bin/pint",
+        "rector": "vendor/bin/rector process --dry-run",
+        "rector-fix": "vendor/bin/rector process"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Simtabi\\Laranail\\Demo\\Mode\\Providers\\DemoModeServiceProvider"
+            ],
+            "aliases": {
+                "Demo": "Simtabi\\Laranail\\Demo\\Mode\\Facades\\Demo",
+                "DemoMode": "Simtabi\\Laranail\\Demo\\Mode\\Facades\\Demo"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
