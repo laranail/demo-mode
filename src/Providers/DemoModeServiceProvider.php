@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Override;
 use Simtabi\Laranail\Demo\Mode\Blade\DemoDirectives;
 use Simtabi\Laranail\Demo\Mode\Commands\DisableCommand;
+use Simtabi\Laranail\Demo\Mode\Commands\DoctorCommand;
 use Simtabi\Laranail\Demo\Mode\Commands\EnableCommand;
 use Simtabi\Laranail\Demo\Mode\Commands\ResetCommand;
 use Simtabi\Laranail\Demo\Mode\Commands\SnapshotCommand;
@@ -45,6 +46,7 @@ use Simtabi\Laranail\Demo\Mode\State\ConfigStateStore;
 use Simtabi\Laranail\Demo\Mode\State\DatabaseStateStore;
 use Simtabi\Laranail\Package\Tools\Package;
 use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorService;
 
 final class DemoModeServiceProvider extends PackageServiceProvider
 {
@@ -68,6 +70,7 @@ final class DemoModeServiceProvider extends PackageServiceProvider
                 DisableCommand::class,
                 ResetCommand::class,
                 SnapshotCommand::class,
+                DoctorCommand::class,
             )
             ->registerRouteMiddleware('demo', EnsureDemoReadOnly::class)
             ->registerRouteMiddleware('demo.readonly', EnsureDemoReadOnly::class)
@@ -102,6 +105,23 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         ConsoleGuard::install($this->app);
         $this->registerLogListeners();
         $this->registerLicenseSync();
+        $this->registerDoctorChecks();
+    }
+
+    /**
+     * Surface the demo-mode health checks in the unified package-tools doctor.
+     */
+    private function registerDoctorChecks(): void
+    {
+        if (! $this->app->bound(DoctorService::class)) {
+            return;
+        }
+
+        $service = $this->app->make(DoctorService::class);
+
+        foreach (DoctorCommand::CHECKS as $check) {
+            $service->register($check);
+        }
     }
 
     /**
