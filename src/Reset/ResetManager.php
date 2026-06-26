@@ -15,6 +15,7 @@ use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
 use Simtabi\Laranail\Demo\Mode\Events\DemoResetting;
+use Simtabi\Laranail\Demo\Mode\Events\DemoSnapshotCreated;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 use Throwable;
 
@@ -64,9 +65,13 @@ final readonly class ResetManager
             throw DemoModeException::resetRefused('snapshots require spatie/laravel-db-snapshots');
         }
 
+        $snapshotName = $name ?? (string) config('demo-mode.reset.snapshot_name', 'demo-baseline');
+
         $this->app->make(Artisan::class)->call('snapshot:create', [
-            'name' => $name ?? (string) config('demo-mode.reset.snapshot_name', 'demo-baseline'),
+            'name' => $snapshotName,
         ]);
+
+        $this->dispatch(new DemoSnapshotCreated($snapshotName));
     }
 
     private function assertSafe(): void
