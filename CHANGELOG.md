@@ -28,6 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `tenant` integration hook).
 - Affordances: dismissible banner with reset countdown, auto-login, side-effect
   guards (mail/broadcasting), console-command guard.
+- Fluent per-model `DemoRule` builder
+  (`DemoRule::for(User::class)->block()->allow('create')->protectAttributes('email')`),
+  additive with the trait/config and consumed by the write guard.
+- Optional audit logging: blocked attempts (`demo_blocked_logs`) and completed
+  resets (`demo_reset_logs`), toggled by `logging.blocked` / `logging.reset`
+  (+ an optional log channel).
 - CLI: `laranail::demo-mode.{status,enable,disable,reset,snapshot}` (+ `demo:*`).
 - Blade directives, base controller, controller/model traits, events, and a
   full configuration surface.

@@ -11,6 +11,8 @@ use Simtabi\Laranail\Demo\Mode\Concerns\PreventsDemoWrites;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
 
 /**
  * Shared model-write guard used by both the {@see PreventsDemoWrites} trait and
@@ -23,7 +25,10 @@ use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
  */
 final readonly class EloquentWriteGuard
 {
-    public function __construct(private DemoMode $demo) {}
+    public function __construct(
+        private DemoMode $demo,
+        private DemoRuleRegistry $rules,
+    ) {}
 
     public function guard(Model $model, string $operation): void
     {
@@ -43,16 +48,43 @@ final readonly class EloquentWriteGuard
         throw DemoModeException::writeBlocked(class_basename($model));
     }
 
+    /**
+     * Additive across sources (rule / trait / config) with a single allow override:
+     * an explicit DemoRule allow() always permits the operation; otherwise the
+     * write is blocked if any source blocks it.
+     */
     private function operationBlocked(Model $model, string $operation): bool
     {
-        // Trait opt-in: all operations blocked except those listed in $demoAllowed.
-        if (in_array(PreventsDemoWrites::class, class_uses_recursive($model), true)) {
-            $allowed = property_exists($model, 'demoAllowed') ? (array) $model->demoAllowed : [];
+        $rule = $this->rules->get($model::class);
 
-            return ! in_array($operation, $allowed, true);
+        if ($rule?->allows($operation)) {
+            return false;
+        }
+        if ((bool) $rule?->blocks($operation)) {
+            return true;
+        }
+        if ($this->traitBlocks($model, $operation)) {
+            return true;
         }
 
-        $protection = $this->configProtection($model::class);
+        return $this->configBlocks($model::class, $operation);
+    }
+
+    private function traitBlocks(Model $model, string $operation): bool
+    {
+        // Trait opt-in: all operations blocked except those listed in $demoAllowed.
+        if (! in_array(PreventsDemoWrites::class, class_uses_recursive($model), true)) {
+            return false;
+        }
+
+        $allowed = property_exists($model, 'demoAllowed') ? (array) $model->demoAllowed : [];
+
+        return ! in_array($operation, $allowed, true);
+    }
+
+    private function configBlocks(string $class, string $operation): bool
+    {
+        $protection = $this->configProtection($class);
 
         if ($protection === null) {
             return false;
@@ -89,6 +121,13 @@ final readonly class EloquentWriteGuard
     {
         $map = (array) config('demo-mode.write.protected_attributes', []);
         $attributes = (array) ($map[$model::class] ?? []);
+
+        // Union with any DemoRule-defined protected attributes for this model.
+        $rule = $this->rules->get($model::class);
+
+        if ($rule instanceof DemoRule) {
+            $attributes = array_values(array_unique([...$attributes, ...$rule->protectedAttributes()]));
+        }
 
         if ($attributes === []) {
             return false;

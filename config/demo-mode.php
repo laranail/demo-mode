@@ -273,8 +273,9 @@ return [
     |--------------------------------------------------------------------------
     */
     'logging' => [
-        'blocked' => (bool) $env('LOG_BLOCKED', false),   // record blocked attempts
-        'channel' => null,
+        'blocked' => (bool) $env('LOG_BLOCKED', false),   // record blocked attempts (needs events.enabled)
+        'reset' => (bool) $env('LOG_RESET', false),       // record completed resets
+        'channel' => null,                                 // also mirror blocked attempts to this log channel
     ],
 
     /*

@@ -77,6 +77,30 @@ Or protect models (and attributes) from config without touching them:
 ],
 ```
 
+Or define rules fluently at runtime (e.g. in `AppServiceProvider::boot`) with `DemoRule`:
+
+```php
+use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
+
+DemoRule::for(User::class)
+    ->block()                                  // block all operations…
+    ->allow('create')                          // …except create
+    ->protectAttributes('email', 'password');  // and never let these change
+
+// Demo::rule(...) is the facade shortcut for DemoRule::for(...).
+```
+
+Rules are **additive** with the trait/config (a write is blocked if any source blocks it),
+except an explicit `allow($op)` which always wins. `allow()` un-blocks the *operation* only —
+protected attributes stay protected. `DemoRule` governs the Eloquent layer (not `demo.readonly`).
+
+## Audit logging
+
+Turn on `logging.blocked` to record blocked attempts to `demo_blocked_logs`, and
+`logging.reset` to record resets to `demo_reset_logs` (publish + run the migrations).
+Set `logging.channel` to also mirror blocked attempts to a log channel. Blocked logging
+relies on the `DemoActionBlocked` event, so it needs `events.enabled` (the default).
+
 ## Blade
 
 ```blade

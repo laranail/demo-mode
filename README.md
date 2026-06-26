@@ -38,6 +38,7 @@ Demo::isActive();              // true
 Demo::allows('export');        // gate a named feature
 Demo::guard('export');         // throw DemoModeException if denied
 Demo::withoutGuards(fn () => $user->update([...])); // run an admin write
+Demo::rule(User::class)->block()->allow('create')->protectAttributes('email'); // fluent model rule
 Demo::reset();                 // restore the demo baseline
 ```
 

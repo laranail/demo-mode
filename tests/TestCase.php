@@ -32,7 +32,11 @@ abstract class TestCase extends Orchestra
         config()->set('demo-mode.state.store', 'config');
         config()->set('demo-mode.events.enabled', true);
 
-        $migration = include __DIR__.'/../database/migrations/create_demo_state_table.php.stub';
-        $migration->up();
+        $stubs = glob(__DIR__.'/../database/migrations/*.php.stub');
+        sort($stubs);
+
+        foreach ($stubs as $stub) {
+            (include $stub)->up();
+        }
     }
 }

@@ -18,6 +18,9 @@ use Simtabi\Laranail\Demo\Mode\Commands\StatusCommand;
 use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
+use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
 use Simtabi\Laranail\Demo\Mode\Guards\ConsoleGuard;
 use Simtabi\Laranail\Demo\Mode\Guards\EloquentWriteGuard;
 use Simtabi\Laranail\Demo\Mode\Guards\WriteBlockingConnection;
@@ -33,6 +36,8 @@ use Simtabi\Laranail\Demo\Mode\Http\Middleware\GuardSideEffects;
 use Simtabi\Laranail\Demo\Mode\Http\Middleware\InjectDemoBanner;
 use Simtabi\Laranail\Demo\Mode\License\NullLicenseGateway;
 use Simtabi\Laranail\Demo\Mode\License\VerifierLicenseGateway;
+use Simtabi\Laranail\Demo\Mode\Listeners\LogBlockedAttempt;
+use Simtabi\Laranail\Demo\Mode\Listeners\LogDemoReset;
 use Simtabi\Laranail\Demo\Mode\Listeners\SyncDemoWithLicense;
 use Simtabi\Laranail\Demo\Mode\Sandbox\SandboxContext;
 use Simtabi\Laranail\Demo\Mode\State\CacheStateStore;
@@ -52,7 +57,11 @@ final class DemoModeServiceProvider extends PackageServiceProvider
             ->hasTranslations()
             ->hasViews()
             ->hasRoute('web')
-            ->hasMigration('create_demo_state_table')
+            ->hasMigrations([
+                'create_demo_state_table',
+                'create_demo_blocked_logs_table',
+                'create_demo_reset_logs_table',
+            ])
             ->hasCommands(
                 StatusCommand::class,
                 EnableCommand::class,
@@ -80,6 +89,7 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         $this->registerLicenseGateway();
 
         $this->app->singleton(SandboxContext::class);
+        $this->app->singleton(DemoRuleRegistry::class);
         $this->app->singleton(DemoMode::class);
     }
 
@@ -90,7 +100,20 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         $this->bootModelGuards();
         WriteBlockingConnection::install($this->app);
         ConsoleGuard::install($this->app);
+        $this->registerLogListeners();
         $this->registerLicenseSync();
+    }
+
+    /**
+     * Audit listeners for blocked attempts and completed resets (each self-checks
+     * its config toggle).
+     */
+    private function registerLogListeners(): void
+    {
+        $events = $this->app['events'];
+
+        $events->listen(DemoActionBlocked::class, [LogBlockedAttempt::class, 'handle']);
+        $events->listen(DemoReset::class, [LogDemoReset::class, 'handle']);
     }
 
     /**

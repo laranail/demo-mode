@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Support\Facades\Facade;
 use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
 
 /**
  * @method static bool isActive()
@@ -23,6 +24,7 @@ use Simtabi\Laranail\Demo\Mode\DemoMode;
  * @method static bool denies(string $feature)
  * @method static DemoMode protect(string ...$features)
  * @method static DemoMode permit(string ...$features)
+ * @method static DemoRule rule(string $class)
  * @method static void guard(string $feature)
  * @method static void reset(?string $strategy = null)
  * @method static void snapshot(?string $name = null)
