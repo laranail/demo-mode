@@ -46,7 +46,6 @@ use Simtabi\Laranail\Demo\Mode\State\ConfigStateStore;
 use Simtabi\Laranail\Demo\Mode\State\DatabaseStateStore;
 use Simtabi\Laranail\Package\Tools\Package;
 use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
-use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorService;
 
 final class DemoModeServiceProvider extends PackageServiceProvider
 {
@@ -72,6 +71,7 @@ final class DemoModeServiceProvider extends PackageServiceProvider
                 SnapshotCommand::class,
                 DoctorCommand::class,
             )
+            ->hasDoctorChecks(DoctorCommand::CHECKS)
             ->registerRouteMiddleware('demo', EnsureDemoReadOnly::class)
             ->registerRouteMiddleware('demo.readonly', EnsureDemoReadOnly::class)
             ->registerRouteMiddleware('demo.only', EnsureDemoMode::class)
@@ -105,23 +105,6 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         ConsoleGuard::install($this->app);
         $this->registerLogListeners();
         $this->registerLicenseSync();
-        $this->registerDoctorChecks();
-    }
-
-    /**
-     * Surface the demo-mode health checks in the unified package-tools doctor.
-     */
-    private function registerDoctorChecks(): void
-    {
-        if (! $this->app->bound(DoctorService::class)) {
-            return;
-        }
-
-        $service = $this->app->make(DoctorService::class);
-
-        foreach (DoctorCommand::CHECKS as $check) {
-            $service->register($check);
-        }
     }
 
     /**
