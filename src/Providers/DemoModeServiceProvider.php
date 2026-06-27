@@ -19,6 +19,7 @@ use Simtabi\Laranail\Demo\Mode\Commands\StatusCommand;
 use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Simtabi\Laranail\Demo\Mode\Doctor\Checks;
 use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
 use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
 use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
@@ -55,7 +56,8 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         $package
             ->name('laranail/demo-mode')
             ->hasConfigFile('demo-mode')
-            ->hasTranslations()
+            ->withoutConfigNamespacing()
+            ->hasTranslations('demo-mode')
             ->hasViews()
             ->hasRoute('web')
             ->hasMigrations([
@@ -71,7 +73,7 @@ final class DemoModeServiceProvider extends PackageServiceProvider
                 SnapshotCommand::class,
                 DoctorCommand::class,
             )
-            ->hasDoctorChecks(DoctorCommand::CHECKS)
+            ->hasDoctorChecks(Checks::all())
             ->registerRouteMiddleware('demo', EnsureDemoReadOnly::class)
             ->registerRouteMiddleware('demo.readonly', EnsureDemoReadOnly::class)
             ->registerRouteMiddleware('demo.only', EnsureDemoMode::class)
