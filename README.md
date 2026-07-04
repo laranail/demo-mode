@@ -1,8 +1,9 @@
-# Demo Mode
+# laranail/demo-mode
 
-[![Tests](https://img.shields.io/github/actions/workflow/status/laranail/demo-mode/tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/laranail/demo-mode/actions)
-[![Packagist](https://img.shields.io/packagist/v/laranail/demo-mode.svg?style=flat-square)](https://packagist.org/packages/laranail/demo-mode)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/demo-mode.svg)](https://packagist.org/packages/laranail/demo-mode)
+[![Tests](https://github.com/laranail/demo-mode/actions/workflows/tests.yml/badge.svg)](https://github.com/laranail/demo-mode/actions/workflows/tests.yml)
+[![Static analysis](https://github.com/laranail/demo-mode/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/laranail/demo-mode/actions/workflows/static-analysis.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A comprehensive, **granular**, **license-aware** demo / sandbox controller for Laravel products.
 
@@ -90,21 +91,54 @@ Drive it from the license (with the verifier installed):
 
 `laranail::demo-mode.status` · `…enable` · `…disable` · `…reset` · `…snapshot` (each also as `demo:*`).
 
-<a name="documentation"></a>
+## <a name="documentation"></a>Documentation
 
-## Documentation
+Hosted at [`opensource.simtabi.com/demo-mode/docs/`](https://opensource.simtabi.com/demo-mode/docs/).
+The same pages live under [`docs/`](docs/):
 
-| Page | What it covers |
-|------|----------------|
-| [installation.md](docs/installation.md) | Install, publish, scheduler wiring |
-| [configuration.md](docs/configuration.md) | The full config surface + env vars |
-| [usage.md](docs/usage.md) | Middleware, traits, base controller, facade, blade, fluent rules |
-| [guards.md](docs/guards.md) | The layered write protection + the mass-op caveat |
-| [reset-strategies.md](docs/reset-strategies.md) | Reset/restore strategies, scope, safety, scheduling |
-| [sandbox.md](docs/sandbox.md) | Per-visitor sandbox strategies |
-| [license-integration.md](docs/license-integration.md) | License-aware activation via the verifier |
-| [architecture.md](docs/architecture.md) | Internals, resolution + request + reset flows, prior art |
-| [security.md](docs/security.md) | Threat model and hardening notes |
+### Guides
+
+- [Installation](docs/installation.md) — install, publish, scheduler wiring.
+- [Configuration](docs/configuration.md) — the full config surface + env vars.
+- [Architecture](docs/architecture.md) — internals, resolution + request + reset flows, prior art.
+- [Security](docs/security.md) — threat model and hardening notes.
+
+### Reference
+
+- [Usage](docs/usage.md) — middleware, traits, base controller, facade, blade, fluent rules.
+- [Guards](docs/guards.md) — the layered write protection + the mass-op caveat.
+- [Reset strategies](docs/reset-strategies.md) — reset/restore strategies, scope, safety, scheduling.
+- [Sandbox](docs/sandbox.md) — per-visitor sandbox strategies.
+- [License integration](docs/license-integration.md) — license-aware activation via the verifier.
+
+### Project
+
+- [Changelog](CHANGELOG.md) — release history.
+
+## Stability
+
+Pre-1.0 (0.x) — the public API may change between minor versions. Pin a version before bumping.
+
+## Local development
+
+```bash
+composer test
+composer lint
+```
+
+## Sister packages
+
+- [`laranail/license-verifier`](https://github.com/laranail/license-verifier) — drives license-aware demo activation.
+- [`laranail/license-kit`](https://github.com/laranail/license-kit) — the self-hosted licensing server.
+
+## Community
+
+- [Issues](https://github.com/laranail/demo-mode/issues) — bugs + feature requests.
+
+## Contributing & security
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) — workflow + coding standards.
+- [SECURITY.md](SECURITY.md) — how to report a vulnerability (see also [Security](docs/security.md)).
 
 ## Credits
 
