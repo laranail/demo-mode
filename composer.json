@@ -11,7 +11,7 @@
         "licensing",
         "laranail"
     ],
-    "homepage": "https://opensource.simtabi.com/demo-mode/",
+    "homepage": "https://opensource.simtabi.com/documentation/laranail/demo-mode/",
     "license": "MIT",
     "authors": [
         {
@@ -29,7 +29,7 @@
     "support": {
         "issues": "https://github.com/laranail/demo-mode/issues",
         "source": "https://github.com/laranail/demo-mode",
-        "docs": "https://opensource.simtabi.com/demo-mode/docs/"
+        "docs": "https://opensource.simtabi.com/documentation/laranail/demo-mode/"
     },
     "require": {
         "php": "^8.4 || ^8.5",
