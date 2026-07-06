@@ -38,7 +38,7 @@
         "illuminate/console": "^13.0",
         "illuminate/http": "^13.0",
         "illuminate/database": "^13.0",
-        "laranail/package-tools": "^1.0",
+        "laranail/package-tools": "^2.0",
         "laranail/console": "^1.0"
     },
     "require-dev": {
