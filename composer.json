@@ -61,12 +61,6 @@
         "spatie/laravel-backup": "Enables the `backup-restore` reset strategy.",
         "stancl/tenancy": "Enables the per-visitor `tenant` sandbox integration."
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../package/tools"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Simtabi\\Laranail\\Demo\\Mode\\": "src/",
