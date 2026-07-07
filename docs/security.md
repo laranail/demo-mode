@@ -32,4 +32,6 @@ hostile-input territory and harden the environment too.
 
 See [SECURITY.md](../SECURITY.md) — disclosures go to `opensource@simtabi.com`.
 
+---
+
 [← Docs index](../README.md#documentation)

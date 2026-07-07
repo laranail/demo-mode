@@ -1,6 +1,8 @@
 # License integration
 
-demo-mode complements [`laranail/license-verifier`](https://opensource.simtabi.com/license-verifier/)
+How demo-mode drives its state from a license — fully optional, via a soft gateway seam.
+
+demo-mode complements [`laranail/license-verifier`](https://opensource.simtabi.com/documentation/laranail/license-verifier/)
 without depending on it. All access goes through a small `Contracts\LicenseGateway`:
 
 - when the verifier is installed, the provider binds `VerifierLicenseGateway` (delegating
@@ -40,5 +42,7 @@ otherwise demoing.
 With `license.sync_events` on, a `LicenseActivated` event turns demo off and
 `LicenseDeactivated` turns it back on (handy for `manual`/`both` triggers). The listener
 is registered only when the verifier's event classes exist.
+
+---
 
 [← Docs index](../README.md#documentation)

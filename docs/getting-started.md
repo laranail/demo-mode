@@ -1,6 +1,10 @@
-# Usage
+# Getting started
 
-Every capability is reachable several ways — pick what fits.
+Every capability is reachable several ways — facade, middleware, controllers, models, Blade, events — pick what fits.
+
+Start with [Installation](installation.md), then activate demo mode (`DEMO_MODE_ENABLED=true`, or
+a license-driven trigger — see [Configuration](configuration.md) and
+[License integration](license-integration.md)).
 
 ## Facade
 
@@ -114,5 +118,14 @@ relies on the `DemoActionBlocked` event, so it needs `events.enabled` (the defau
 
 `DemoModeEnabled` · `DemoModeDisabled` · `DemoActionBlocked` · `DemoResetting` ·
 `DemoReset` · `DemoSandboxCreated`.
+
+## Next steps
+
+- [Configuration](configuration.md) — every section of `config/demo-mode.php`.
+- [Write guards](tools/guards.md) — the layered write-protection model.
+- [Reset & restore](tools/reset-strategies.md) and [Per-visitor sandbox](tools/sandbox.md).
+- [Commands](tools/commands.md) — the `laranail::demo-mode.*` Artisan commands.
+
+---
 
 [← Docs index](../README.md#documentation)

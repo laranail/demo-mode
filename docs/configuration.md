@@ -1,5 +1,7 @@
 # Configuration
 
+Every section of `config/demo-mode.php` — env-driven (`DEMO_MODE_*`) with runtime overrides.
+
 Publish `config/demo-mode.php`:
 
 ```bash
@@ -40,5 +42,7 @@ Demo::configure([
     'features.export' => false,
 ]);
 ```
+
+---
 
 [← Docs index](../README.md#documentation)

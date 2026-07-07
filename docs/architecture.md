@@ -1,5 +1,7 @@
 # Architecture
 
+The components behind demo-mode and how activation, requests, and resets flow through them.
+
 ## Components
 
 - **`DemoMode`** — the orchestrator (facade target). Memoises the base decision per
@@ -77,5 +79,7 @@ narrower:
 demo-mode unifies these and adds license-aware activation, layered write protection
 (incl. mass-op blocking), granular per-model/route/feature control, pluggable reset
 strategies, and guard suspension.
+
+---
 
 [← Docs index](../README.md#documentation)

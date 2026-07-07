@@ -48,4 +48,6 @@ Bypassed actors (config `bypass.*`) are never subject to any guard.
 - `console.guard` blocks the artisan commands listed in `console.protected` while demo
   is active (the package's own commands and `withoutGuards()` are always exempt).
 
-[← Docs index](../README.md#documentation)
+---
+
+[← Docs index](../../README.md#documentation)

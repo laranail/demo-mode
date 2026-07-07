@@ -1,5 +1,7 @@
 # Installation
 
+Install `laranail/demo-mode`, publish what you need, and wire the optional integrations.
+
 ```bash
 composer require laranail/demo-mode
 ```
@@ -37,5 +39,12 @@ scheduler runs on the host:
 ```cron
 * * * * * cd /path/to/app && php artisan schedule:run >> /dev/null 2>&1
 ```
+
+## Next steps
+
+- [Getting started](getting-started.md) — the facade, middleware, model, and Blade surfaces.
+- [Configuration](configuration.md) — every section of `config/demo-mode.php`.
+
+---
 
 [← Docs index](../README.md#documentation)

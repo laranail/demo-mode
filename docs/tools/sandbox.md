@@ -38,4 +38,6 @@ let it isolate data; this strategy is a documented integration hook bound only w
 > Full disposable per-instance demos (à la InstaWP/TasteWP) that spin up a whole app per
 > visitor are out of scope for a single package.
 
-[← Docs index](../README.md#documentation)
+---
+
+[← Docs index](../../README.md#documentation)

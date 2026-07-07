@@ -45,4 +45,9 @@ A `ResetLock` (+ `reset.min_interval`) prevents concurrent/over-eager resets.
 php artisan demo:snapshot   # requires spatie/laravel-db-snapshots
 ```
 
-[← Docs index](../README.md#documentation)
+`demo:reset` and `demo:snapshot` are the short aliases of `laranail::demo-mode.reset` /
+`laranail::demo-mode.snapshot` — see [Commands](commands.md).
+
+---
+
+[← Docs index](../../README.md#documentation)
