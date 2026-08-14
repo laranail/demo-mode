@@ -33,7 +33,7 @@ final readonly class InjectDemoBanner
         }
 
         $content = (string) $response->getContent();
-        $html = view((string) config('demo-mode.banner.view', 'demo-mode::banner'), [
+        $html = view((string) config('demo-mode.banner.view', 'laranail-demo-mode::banner'), [
             'banner' => $this->banner->data(),
         ])->render();
 

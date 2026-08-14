@@ -33,6 +33,6 @@ final readonly class BlockDemoFeature
             event(new DemoActionBlocked('feature', $feature));
         }
 
-        return $this->responder->respond($request, __('demo-mode::blocked.feature', ['feature' => $feature]));
+        return $this->responder->respond($request, __('laranail-demo-mode::blocked.feature', ['feature' => $feature]));
     }
 }

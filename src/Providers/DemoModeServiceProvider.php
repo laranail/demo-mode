@@ -59,8 +59,8 @@ final class DemoModeServiceProvider extends PackageServiceProvider
             ->name('laranail/demo-mode')
             ->hasConfigFile('demo-mode')
             ->withoutConfigNamespacing()
-            ->hasTranslations('demo-mode')
-            ->hasViews()
+            ->hasTranslations('laranail-demo-mode')
+            ->hasViews('laranail-demo-mode')
             ->hasRoute('web')
             ->hasMigrations([
                 'create_demo_state_table',

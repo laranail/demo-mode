@@ -256,7 +256,7 @@ return [
     */
     'banner' => [
         'enabled' => (bool) $env('BANNER', true),
-        'view' => 'demo-mode::banner',
+        'view' => 'laranail-demo-mode::banner',
         'position' => 'top',              // top | bottom
         'dismissible' => true,
         'countdown' => true,              // show time until next reset

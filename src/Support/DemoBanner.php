@@ -24,7 +24,7 @@ final readonly class DemoBanner
     public function data(): array
     {
         return [
-            'message' => config('demo-mode.banner.message') ?? __('demo-mode::banner.message'),
+            'message' => config('demo-mode.banner.message') ?? __('laranail-demo-mode::banner.message'),
             'position' => (string) config('demo-mode.banner.position', 'top'),
             'dismissible' => (bool) config('demo-mode.banner.dismissible', true),
             'reset_in' => $this->secondsUntilReset(),

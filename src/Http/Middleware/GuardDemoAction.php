@@ -32,6 +32,6 @@ final readonly class GuardDemoAction
             event(new DemoActionBlocked('action', $action));
         }
 
-        return $this->responder->respond($request, __('demo-mode::blocked.message'));
+        return $this->responder->respond($request, __('laranail-demo-mode::blocked.message'));
     }
 }

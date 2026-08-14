@@ -33,7 +33,7 @@ final readonly class EnsureDemoReadOnly
             event(new DemoActionBlocked('http', $request->method().' '.$request->path()));
         }
 
-        return $this->responder->respond($request, __('demo-mode::blocked.write'));
+        return $this->responder->respond($request, __('laranail-demo-mode::blocked.write'));
     }
 
     private function isMutating(Request $request): bool

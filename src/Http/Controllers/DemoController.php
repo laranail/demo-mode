@@ -37,7 +37,7 @@ final class DemoController extends Controller
         }
 
         return $request->expectsJson()
-            ? response()->json(['message' => __('demo-mode::reset.complete')])
-            : back()->with('demo_status', __('demo-mode::reset.complete'));
+            ? response()->json(['message' => __('laranail-demo-mode::reset.complete')])
+            : back()->with('demo_status', __('laranail-demo-mode::reset.complete'));
     }
 }
