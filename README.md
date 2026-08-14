@@ -30,8 +30,8 @@ DEMO_MODE_ENABLED=true        # manual toggle
 Block writes on your routes and models, and gate a feature:
 
 ```php
-Route::middleware('demo.readonly')->group(/* writes blocked in demo */);
-Route::post('export', ...)->middleware('demo.feature:export');
+Route::middleware('laranail-demo-mode.readonly')->group(/* writes blocked in demo */);
+Route::post('export', ...)->middleware('laranail-demo-mode.feature:export');
 ```
 
 ```php

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Blocks a route when the named demo feature is disabled. Alias: `demo.feature`.
  *
- *   Route::post(...)->middleware('demo.feature:export');
+ *   Route::post(...)->middleware('laranail-demo-mode.feature:export');
  */
 final readonly class BlockDemoFeature
 {

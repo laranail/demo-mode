@@ -15,7 +15,7 @@ beforeEach(function (): void {
 });
 
 it('injects the banner into HTML responses while demo is active', function (): void {
-    Route::middleware(['web', 'demo.banner'])->get('/page', fn (): string => '<html><body>Hi</body></html>');
+    Route::middleware(['web', 'laranail-demo-mode.banner'])->get('/page', fn (): string => '<html><body>Hi</body></html>');
 
     Demo::enable();
 
@@ -25,7 +25,7 @@ it('injects the banner into HTML responses while demo is active', function (): v
 });
 
 it('does not inject the banner when demo is inactive', function (): void {
-    Route::middleware(['web', 'demo.banner'])->get('/page', fn (): string => '<html><body>Hi</body></html>');
+    Route::middleware(['web', 'laranail-demo-mode.banner'])->get('/page', fn (): string => '<html><body>Hi</body></html>');
 
     expect($this->get('/page')->getContent())->not->toContain('demo-mode-banner');
 });
@@ -34,7 +34,7 @@ it('rolls back writes under the ephemeral strategy', function (): void {
     config()->set('demo-mode.write.strategy', 'ephemeral');
     Schema::create('gadgets', fn ($t) => tap($t->id(), fn () => $t->string('name')->nullable()));
 
-    Route::middleware(['web', 'demo.ephemeral'])->post('/make', function (): string {
+    Route::middleware(['web', 'laranail-demo-mode.ephemeral'])->post('/make', function (): string {
         Gadget::create(['name' => 'temp']);
 
         // The write is visible within the request...

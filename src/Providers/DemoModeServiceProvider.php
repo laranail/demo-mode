@@ -81,17 +81,17 @@ final class DemoModeServiceProvider extends PackageServiceProvider
                     ->field('Version', fn (): string => (string) InstalledVersions::getPrettyVersion('laranail/demo-mode'))
                     ->field('Enabled', fn (): bool => (bool) config('demo-mode.enabled', false))
             )
-            ->registerRouteMiddleware('demo', EnsureDemoReadOnly::class)
-            ->registerRouteMiddleware('demo.readonly', EnsureDemoReadOnly::class)
-            ->registerRouteMiddleware('demo.only', EnsureDemoMode::class)
-            ->registerRouteMiddleware('demo.feature', BlockDemoFeature::class)
-            ->registerRouteMiddleware('demo.guard', GuardDemoAction::class)
-            ->registerRouteMiddleware('demo.banner', InjectDemoBanner::class)
-            ->registerRouteMiddleware('demo.ephemeral', EphemeralWrites::class)
-            ->registerRouteMiddleware('demo.safe', GuardSideEffects::class)
-            ->registerRouteMiddleware('demo.autologin', DemoAutoLogin::class)
-            ->registerRouteMiddleware('demo.sandbox', DemoSandbox::class)
-            ->registerRouteMiddleware('demo.bypass', BypassDemo::class);
+            ->registerRouteMiddleware('laranail-demo-mode', EnsureDemoReadOnly::class)
+            ->registerRouteMiddleware('laranail-demo-mode.readonly', EnsureDemoReadOnly::class)
+            ->registerRouteMiddleware('laranail-demo-mode.only', EnsureDemoMode::class)
+            ->registerRouteMiddleware('laranail-demo-mode.feature', BlockDemoFeature::class)
+            ->registerRouteMiddleware('laranail-demo-mode.guard', GuardDemoAction::class)
+            ->registerRouteMiddleware('laranail-demo-mode.banner', InjectDemoBanner::class)
+            ->registerRouteMiddleware('laranail-demo-mode.ephemeral', EphemeralWrites::class)
+            ->registerRouteMiddleware('laranail-demo-mode.safe', GuardSideEffects::class)
+            ->registerRouteMiddleware('laranail-demo-mode.autologin', DemoAutoLogin::class)
+            ->registerRouteMiddleware('laranail-demo-mode.sandbox', DemoSandbox::class)
+            ->registerRouteMiddleware('laranail-demo-mode.bypass', BypassDemo::class);
     }
 
     #[Override]

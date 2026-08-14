@@ -25,8 +25,8 @@ beforeEach(function (): void {
 });
 
 it('blocks mutating HTTP verbs and allows GET via demo.readonly', function (): void {
-    Route::middleware('demo.readonly')->get('/r', fn (): string => 'ok');
-    Route::middleware('demo.readonly')->post('/r', fn (): string => 'saved');
+    Route::middleware('laranail-demo-mode.readonly')->get('/r', fn (): string => 'ok');
+    Route::middleware('laranail-demo-mode.readonly')->post('/r', fn (): string => 'saved');
 
     Demo::enable();
 
@@ -35,14 +35,14 @@ it('blocks mutating HTTP verbs and allows GET via demo.readonly', function (): v
 });
 
 it('allows writes when demo is inactive', function (): void {
-    Route::middleware('demo.readonly')->post('/r', fn (): string => 'saved');
+    Route::middleware('laranail-demo-mode.readonly')->post('/r', fn (): string => 'saved');
 
     $this->postJson('/r')->assertOk();
 });
 
 it('honors the path allowlist', function (): void {
     config()->set('demo-mode.write.allow.paths', ['demo/*']);
-    Route::middleware('demo.readonly')->post('/demo/reset', fn (): string => 'reset');
+    Route::middleware('laranail-demo-mode.readonly')->post('/demo/reset', fn (): string => 'reset');
 
     Demo::enable();
 
@@ -51,7 +51,7 @@ it('honors the path allowlist', function (): void {
 
 it('blocks a route whose feature is disabled via demo.feature', function (): void {
     config()->set('demo-mode.features', ['export' => false]);
-    Route::middleware('demo.feature:export')->get('/export', fn (): string => 'exported');
+    Route::middleware('laranail-demo-mode.feature:export')->get('/export', fn (): string => 'exported');
 
     Demo::enable();
 

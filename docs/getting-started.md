@@ -23,16 +23,16 @@ Demo::license(); // the LicenseGateway
 ## Middleware
 
 ```php
-Route::middleware('demo.readonly')->group(/* writes blocked in demo */);
-Route::post('export', ...)->middleware('demo.feature:export');
-Route::post('publish', ...)->middleware('demo.guard:publish');
-Route::middleware('demo.banner')->group(/* inject the banner */);
-Route::middleware('demo.ephemeral')->group(/* writes roll back */);
-Route::middleware('demo.sandbox')->group(/* per-visitor scoped data */);
-Route::middleware('demo.autologin')->group(/* log in as a demo user */);
-Route::middleware('demo.safe')->group(/* mail -> log, etc. */);
-Route::middleware('demo.bypass')->group(/* guards suspended here */);
-Route::middleware('demo.only')->group(/* 404 unless in demo */);
+Route::middleware('laranail-demo-mode.readonly')->group(/* writes blocked in demo */);
+Route::post('export', ...)->middleware('laranail-demo-mode.feature:export');
+Route::post('publish', ...)->middleware('laranail-demo-mode.guard:publish');
+Route::middleware('laranail-demo-mode.banner')->group(/* inject the banner */);
+Route::middleware('laranail-demo-mode.ephemeral')->group(/* writes roll back */);
+Route::middleware('laranail-demo-mode.sandbox')->group(/* per-visitor scoped data */);
+Route::middleware('laranail-demo-mode.autologin')->group(/* log in as a demo user */);
+Route::middleware('laranail-demo-mode.safe')->group(/* mail -> log, etc. */);
+Route::middleware('laranail-demo-mode.bypass')->group(/* guards suspended here */);
+Route::middleware('laranail-demo-mode.only')->group(/* 404 unless in demo */);
 ```
 
 Attach globally by listing groups in `demo-mode.middleware_groups`, or add them

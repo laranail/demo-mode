@@ -13,7 +13,7 @@ beforeEach(function (): void {
 
 it('records a blocked HTTP attempt when logging.blocked is on', function (): void {
     config()->set('demo-mode.logging.blocked', true);
-    Route::middleware(['web', 'demo.readonly'])->post('/x', fn (): string => 'ok');
+    Route::middleware(['web', 'laranail-demo-mode.readonly'])->post('/x', fn (): string => 'ok');
 
     Demo::enable();
     $this->postJson('/x')->assertStatus(423);
@@ -26,7 +26,7 @@ it('records a blocked HTTP attempt when logging.blocked is on', function (): voi
 
 it('does not record when logging.blocked is off', function (): void {
     config()->set('demo-mode.logging.blocked', false);
-    Route::middleware(['web', 'demo.readonly'])->post('/x', fn (): string => 'ok');
+    Route::middleware(['web', 'laranail-demo-mode.readonly'])->post('/x', fn (): string => 'ok');
 
     Demo::enable();
     $this->postJson('/x')->assertStatus(423);
@@ -38,7 +38,7 @@ it('records a blocked attempt even with the strict connection guard active', fun
     // Proves the audit insert is exempt (runs under withoutGuards).
     config()->set('demo-mode.logging.blocked', true);
     config()->set('demo-mode.write.strict_connection', true);
-    Route::middleware(['web', 'demo.readonly'])->post('/x', fn (): string => 'ok');
+    Route::middleware(['web', 'laranail-demo-mode.readonly'])->post('/x', fn (): string => 'ok');
 
     Demo::enable();
     $this->postJson('/x')->assertStatus(423);
