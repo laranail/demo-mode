@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Simtabi\Laranail\Demo\Mode\Providers\DemoModeServiceProvider;
+use Simtabi\Laranail\Package\Tools\Testing\IsolatedTestCase;
 
-abstract class TestCase extends Orchestra
+abstract class TestCase extends IsolatedTestCase
 {
     public function getEnvironmentSetUp($app): void
     {
