@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Schema;
-use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 use Simtabi\Laranail\Demo\Mode\Facades\Demo;
 use Simtabi\Laranail\Demo\Mode\Tests\Fixtures\Gadget;
+use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 
 beforeEach(function (): void {
     config()->set('demo-mode.trigger', 'manual');

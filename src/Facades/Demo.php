@@ -6,9 +6,9 @@ namespace Simtabi\Laranail\Demo\Mode\Facades;
 
 use Closure;
 use Illuminate\Support\Facades\Facade;
-use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
+use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 
 /**
  * @method static bool isActive()

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\License;
 
-use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 use Throwable;
+use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 
 /**
  * Adapts laranail/license-verifier's LicenseManager to {@see LicenseGateway}.

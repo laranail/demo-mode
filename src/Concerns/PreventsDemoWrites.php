@@ -19,7 +19,4 @@ namespace Simtabi\Laranail\Demo\Mode\Concerns;
  * needs no boot logic. (Mass update()/delete() bypass model events — enable the
  * strict connection guard to cover those.)
  */
-trait PreventsDemoWrites
-{
-    //
-}
+trait PreventsDemoWrites {}
