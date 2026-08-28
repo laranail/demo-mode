@@ -53,7 +53,7 @@
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
-        "rector/rector": "^2.0"
+        "rector/rector": "^2.5.8"
     },
     "suggest": {
         "laranail/license-verifier": "License-aware demo activation (trial/grace/expiry/entitlements) via the LicenseGateway adapter.",
@@ -120,6 +120,16 @@
         {
             "type": "vcs",
             "url": "https://github.com/laranail/package-tools"
+        },
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.org",
+            "exclude": [
+                "laranail/*"
+            ]
+        },
+        {
+            "packagist.org": false
         }
     ]
 }
