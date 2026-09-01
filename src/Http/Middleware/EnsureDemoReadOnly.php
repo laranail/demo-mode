@@ -8,9 +8,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Symfony\Component\HttpFoundation\Response;
-use Simtabi\Laranail\Demo\Mode\Support\BlockResponder;
 use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
+use Simtabi\Laranail\Demo\Mode\Support\BlockResponder;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Blocks mutating HTTP verbs while demo mode is active, honouring the
@@ -30,7 +30,7 @@ final readonly class EnsureDemoReadOnly
         }
 
         if ((bool) config('demo-mode.events.enabled', true)) {
-            event(new DemoActionBlocked('http', $request->method() . ' ' . $request->path()));
+            event(new DemoActionBlocked('http', $request->method().' '.$request->path()));
         }
 
         return $this->responder->respond($request, __('laranail-demo-mode::blocked.write'));

@@ -13,7 +13,7 @@ declare(strict_types=1);
 |
 */
 
-$env = static fn (string $key, mixed $default = null): mixed => env('DEMO_MODE_' . $key, $default);
+$env = static fn (string $key, mixed $default = null): mixed => env('DEMO_MODE_'.$key, $default);
 
 return [
 
@@ -47,9 +47,9 @@ return [
     |   database — persisted in the demo_state table.
     */
     'state' => [
-        'store'       => $env('STATE_STORE', 'cache'),
+        'store' => $env('STATE_STORE', 'cache'),
         'cache_store' => $env('STATE_CACHE_STORE', null),
-        'key'         => 'demo-mode:state',
+        'key' => 'demo-mode:state',
     ],
 
     /*
@@ -77,11 +77,11 @@ return [
     | pre-auth. `gate` is the name of a Gate ability returning true to bypass.
     */
     'bypass' => [
-        'roles'     => [],
+        'roles' => [],
         'abilities' => [],
-        'ids'       => [],
-        'ips'       => [],
-        'gate'      => null,
+        'ids' => [],
+        'ips' => [],
+        'gate' => null,
     ],
 
     /*
@@ -103,8 +103,8 @@ return [
         // Routes/paths/names always allowed even in demo (e.g. login, the reset button).
         'allow' => [
             'routes' => [],
-            'names'  => ['login', 'logout'],
-            'paths'  => ['demo/*'],
+            'names' => ['login', 'logout'],
+            'paths' => ['demo/*'],
         ],
 
         // Eloquent layer: models guarded against writes. Either a bare class name
@@ -126,7 +126,7 @@ return [
         // Response for a blocked write: 'auto' (JSON for API, redirect for web),
         // 'json', or 'redirect'.
         'response' => 'auto',
-        'status'   => 423,
+        'status' => 423,
     ],
 
     /*
@@ -147,7 +147,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'console' => [
-        'guard'     => (bool) $env('GUARD_CONSOLE', false),
+        'guard' => (bool) $env('GUARD_CONSOLE', false),
         'protected' => [
             // 'migrate:fresh', 'db:wipe',
         ],
@@ -159,11 +159,11 @@ return [
     |--------------------------------------------------------------------------
     */
     'side_effects' => [
-        'mail'          => (bool) $env('GUARD_MAIL', true),          // swap mailer to "log"
+        'mail' => (bool) $env('GUARD_MAIL', true),          // swap mailer to "log"
         'notifications' => (bool) $env('GUARD_NOTIFICATIONS', false),
-        'broadcasting'  => (bool) $env('GUARD_BROADCASTING', false),
-        'http'          => (bool) $env('GUARD_HTTP', false),         // block outgoing HTTP
-        'http_allow'    => [],                                  // host allowlist when http guard is on
+        'broadcasting' => (bool) $env('GUARD_BROADCASTING', false),
+        'http' => (bool) $env('GUARD_HTTP', false),         // block outgoing HTTP
+        'http_allow' => [],                                  // host allowlist when http guard is on
     ],
 
     /*
@@ -172,48 +172,48 @@ return [
     |--------------------------------------------------------------------------
     */
     'reset' => [
-        'enabled'  => (bool) $env('RESET_ENABLED', false),
+        'enabled' => (bool) $env('RESET_ENABLED', false),
         'strategy' => $env('RESET_STRATEGY', 'migrate-fresh-seed'),
 
         // Never run a destructive reset outside these environments without --force.
         'allowed_environments' => ['local', 'demo', 'staging'],
-        'allow_production'     => (bool) $env('RESET_ALLOW_PRODUCTION', false),
+        'allow_production' => (bool) $env('RESET_ALLOW_PRODUCTION', false),
 
         // What to reset (each toggleable).
         'scope' => [
             'database' => true,
-            'files'    => false,
-            'cache'    => true,
+            'files' => false,
+            'cache' => true,
             'sessions' => true,
-            'queue'    => false,
-            'logs'     => false,
+            'queue' => false,
+            'logs' => false,
         ],
 
         // migrate-fresh-seed strategy.
-        'seeder'                => null,                 // e.g. Database\Seeders\DemoSeeder::class
+        'seeder' => null,                 // e.g. Database\Seeders\DemoSeeder::class
         'migrate_fresh_options' => [],
 
         // snapshot / sql-dump / backup-restore strategy inputs.
         'snapshot_name' => 'demo-baseline',
         'sql_dump_path' => null,
-        'callback'      => null,               // callable for the `callback` strategy
+        'callback' => null,               // callable for the `callback` strategy
 
         // File reset: disks reset from a baseline directory and/or purged.
         'files' => [
             'baseline_path' => null,
-            'disks'         => [],
+            'disks' => [],
         ],
 
         // Scheduling (requires the host scheduler/cron).
-        'schedule'     => null,               // e.g. 'hourly' or a CRON expression
+        'schedule' => null,               // e.g. 'hourly' or a CRON expression
         'min_interval' => 300,            // seconds between resets
-        'queue'        => false,                 // dispatch the reset as a queued job
-        'maintenance'  => false,           // php artisan down during the reset
+        'queue' => false,                 // dispatch the reset as a queued job
+        'maintenance' => false,           // php artisan down during the reset
 
         // On-demand reset endpoint.
         'on_demand' => [
-            'enabled'  => (bool) $env('RESET_ON_DEMAND', false),
-            'gate'     => null,               // null = anyone (rate-limited); or a Gate ability
+            'enabled' => (bool) $env('RESET_ON_DEMAND', false),
+            'gate' => null,               // null = anyone (rate-limited); or a Gate ability
             'throttle' => '3,1',          // max,minutes
         ],
 
@@ -229,9 +229,9 @@ return [
     */
     'sandbox' => [
         'strategy' => $env('SANDBOX', 'shared'),
-        'ttl'      => 3600,                    // seconds for scoped/tenant sessions
-        'cookie'   => 'demo_sandbox',
-        'models'   => [],                   // models using BelongsToDemoSandbox for `scoped`
+        'ttl' => 3600,                    // seconds for scoped/tenant sessions
+        'cookie' => 'demo_sandbox',
+        'models' => [],                   // models using BelongsToDemoSandbox for `scoped`
     ],
 
     /*
@@ -241,9 +241,9 @@ return [
     */
     'accounts' => [
         'auto_login' => (bool) $env('AUTO_LOGIN', false),
-        'guard'      => null,
-        'default'    => null,                // identifier (email/id) to log in as
-        'roles'      => [
+        'guard' => null,
+        'default' => null,                // identifier (email/id) to log in as
+        'roles' => [
             // 'admin' => 'demo-admin@example.com',
             // 'user'  => 'demo-user@example.com',
         ],
@@ -255,15 +255,15 @@ return [
     |--------------------------------------------------------------------------
     */
     'banner' => [
-        'enabled'     => (bool) $env('BANNER', true),
-        'view'        => 'laranail-demo-mode::banner',
-        'position'    => 'top',              // top | bottom
+        'enabled' => (bool) $env('BANNER', true),
+        'view' => 'laranail-demo-mode::banner',
+        'position' => 'top',              // top | bottom
         'dismissible' => true,
-        'countdown'   => true,              // show time until next reset
-        'message'     => null,                // null = use translation
-        'cta'         => [
+        'countdown' => true,              // show time until next reset
+        'message' => null,                // null = use translation
+        'cta' => [
             'label' => null,
-            'url'   => null,
+            'url' => null,
         ],
     ],
 
@@ -274,7 +274,7 @@ return [
     */
     'logging' => [
         'blocked' => (bool) $env('LOG_BLOCKED', false),   // record blocked attempts (needs events.enabled)
-        'reset'   => (bool) $env('LOG_RESET', false),       // record completed resets
+        'reset' => (bool) $env('LOG_RESET', false),       // record completed resets
         'channel' => null,                                 // also mirror blocked attempts to this log channel
     ],
 
@@ -300,8 +300,8 @@ return [
     |--------------------------------------------------------------------------
     */
     'routes' => [
-        'enabled'    => true,
-        'prefix'     => 'demo',
+        'enabled' => true,
+        'prefix' => 'demo',
         'middleware' => ['web'],
     ],
 ];

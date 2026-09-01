@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Concerns;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Illuminate\Database\Eloquent\Builder;
 use Simtabi\Laranail\Demo\Mode\Sandbox\SandboxContext;
 
 /**
@@ -30,7 +30,7 @@ trait BelongsToDemoSandbox
             $context = app(SandboxContext::class);
 
             if ($context->id() !== null && app(DemoMode::class)->isActive()) {
-                $builder->where($builder->getModel()->getTable() . '.demo_sandbox_id', $context->id());
+                $builder->where($builder->getModel()->getTable().'.demo_sandbox_id', $context->id());
             }
         });
     }

@@ -5,10 +5,10 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
-use Simtabi\Laranail\Demo\Mode\Facades\Demo;
-use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
-use Simtabi\Laranail\Demo\Mode\Tests\Fixtures\Gadget;
 use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
+use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
+use Simtabi\Laranail\Demo\Mode\Facades\Demo;
+use Simtabi\Laranail\Demo\Mode\Tests\Fixtures\Gadget;
 
 beforeEach(function (): void {
     config()->set('demo-mode.trigger', 'manual');

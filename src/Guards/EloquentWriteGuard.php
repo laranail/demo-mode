@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Guards;
 
-use function class_uses_recursive;
-
 use Illuminate\Database\Eloquent\Model;
-use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
-use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
-use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
 use Simtabi\Laranail\Demo\Mode\Concerns\PreventsDemoWrites;
+use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
+
+use function class_uses_recursive;
 
 /**
  * Shared model-write guard used by both the {@see PreventsDemoWrites} trait and
@@ -139,7 +139,7 @@ final readonly class EloquentWriteGuard
     private function report(Model $model, string $operation): void
     {
         if ((bool) config('demo-mode.events.enabled', true)) {
-            event(new DemoActionBlocked('model', $model::class . ':' . $operation));
+            event(new DemoActionBlocked('model', $model::class.':'.$operation));
         }
     }
 }

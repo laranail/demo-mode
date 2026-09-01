@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Reset;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
+use Illuminate\Support\Facades\File;
 
 /**
  * Restores file state for a demo: re-copies a baseline directory over the
@@ -42,7 +42,7 @@ final readonly class FileResetter
     }
 
     /**
-     * @param list<string> $disks
+     * @param  list<string>  $disks
      */
     private function purgeDisks(array $disks): void
     {

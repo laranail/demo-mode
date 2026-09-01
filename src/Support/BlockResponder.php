@@ -23,7 +23,7 @@ final class BlockResponder
         if ($wantsJson) {
             return response()->json([
                 'message' => $message,
-                'demo'    => true,
+                'demo' => true,
             ], $status);
         }
 

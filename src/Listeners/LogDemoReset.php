@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Listeners;
 
-use Throwable;
 use Illuminate\Support\Facades\DB;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
+use Throwable;
 
 /**
  * Records completed resets to the demo_reset_logs table when
@@ -25,8 +25,8 @@ final readonly class LogDemoReset
         }
 
         $row = [
-            'strategy'   => $event->strategy,
-            'scope'      => json_encode($event->scope),
+            'strategy' => $event->strategy,
+            'scope' => json_encode($event->scope),
             'created_at' => now(),
         ];
 
