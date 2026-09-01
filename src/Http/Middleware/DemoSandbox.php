@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Demo\Mode\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Symfony\Component\HttpFoundation\Response;
-use Simtabi\Laranail\Demo\Mode\Sandbox\SandboxContext;
 use Simtabi\Laranail\Demo\Mode\Events\DemoSandboxCreated;
+use Simtabi\Laranail\Demo\Mode\Sandbox\SandboxContext;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Establishes the per-visitor sandbox id for the `scoped` strategy and persists

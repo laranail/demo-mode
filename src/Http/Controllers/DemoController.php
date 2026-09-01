@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Symfony\Component\HttpFoundation\Response;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * The on-demand "Reset demo" endpoint (POST {prefix}/reset).

@@ -22,7 +22,7 @@ final readonly class SnapshotStrategy implements ResetStrategy
         }
 
         $this->artisan->call('snapshot:load', [
-            'name'    => (string) config('demo-mode.reset.snapshot_name', 'demo-baseline'),
+            'name' => (string) config('demo-mode.reset.snapshot_name', 'demo-baseline'),
             '--force' => true,
         ]);
     }

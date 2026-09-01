@@ -12,7 +12,7 @@ if ((bool) config('demo-mode.routes.enabled', true)) {
         ->middleware((array) config('demo-mode.routes.middleware', ['web']))
         ->group(function () use ($throttle): void {
             Route::post('reset', [DemoController::class, 'reset'])
-                ->middleware('throttle:' . $throttle)
+                ->middleware('throttle:'.$throttle)
                 ->name('demo-mode.reset');
         });
 }

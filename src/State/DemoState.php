@@ -30,11 +30,11 @@ final readonly class DemoState
     public function resolve(): bool
     {
         return match ((string) config('demo-mode.trigger', 'both')) {
-            'manual'      => $this->store->get() ?? $this->configEnabled(),
-            'license'     => $this->license->decide() ?? $this->configEnabled(),
+            'manual' => $this->store->get() ?? $this->configEnabled(),
+            'license' => $this->license->decide() ?? $this->configEnabled(),
             'environment' => $this->inEnvironment(),
-            'schedule'    => $this->inWindow(),
-            default       => $this->store->get() ?? $this->license->decide() ?? $this->configEnabled(),
+            'schedule' => $this->inWindow(),
+            default => $this->store->get() ?? $this->license->decide() ?? $this->configEnabled(),
         };
     }
 
@@ -47,10 +47,10 @@ final readonly class DemoState
         }
 
         return match ($trigger) {
-            'manual'      => 'config',
+            'manual' => 'config',
             'environment' => 'environment',
-            'schedule'    => 'schedule',
-            default       => $this->license->decide() !== null ? 'license' : 'config',
+            'schedule' => 'schedule',
+            default => $this->license->decide() !== null ? 'license' : 'config',
         };
     }
 

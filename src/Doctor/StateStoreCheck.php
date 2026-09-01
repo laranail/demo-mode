@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Doctor;
 
-use Throwable;
 use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorCheck;
 use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorResult;
+use Throwable;
 
 /**
  * The configured demo state store must be valid and reachable.

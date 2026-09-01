@@ -17,7 +17,7 @@ final class DemoRuleRegistry
     private array $rules = [];
 
     /**
-     * @param class-string $class
+     * @param  class-string  $class
      */
     public function for(string $class): DemoRule
     {
@@ -25,7 +25,7 @@ final class DemoRuleRegistry
     }
 
     /**
-     * @param class-string $class
+     * @param  class-string  $class
      */
     public function get(string $class): ?DemoRule
     {

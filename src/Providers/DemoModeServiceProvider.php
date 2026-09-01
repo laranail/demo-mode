@@ -4,49 +4,49 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Providers;
 
-use Override;
 use Composer\InstalledVersions;
-use Illuminate\Database\Eloquent\Model;
-use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Simtabi\Laranail\Package\Tools\Package;
+use Illuminate\Contracts\Cache\Factory as CacheFactory;
 use Illuminate\Contracts\Container\Container;
-use Simtabi\Laranail\Demo\Mode\Doctor\Checks;
-use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
-use Simtabi\Laranail\Demo\Mode\Guards\ConsoleGuard;
 use Illuminate\Database\ConnectionResolverInterface;
+use Illuminate\Database\Eloquent\Model;
+use Override;
 use Simtabi\Laranail\Demo\Mode\Blade\DemoDirectives;
-use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
-use Simtabi\Laranail\Demo\Mode\Commands\ResetCommand;
-use Simtabi\Laranail\Demo\Mode\State\CacheStateStore;
+use Simtabi\Laranail\Demo\Mode\Commands\DisableCommand;
 use Simtabi\Laranail\Demo\Mode\Commands\DoctorCommand;
 use Simtabi\Laranail\Demo\Mode\Commands\EnableCommand;
-use Simtabi\Laranail\Demo\Mode\Commands\StatusCommand;
-use Simtabi\Laranail\Demo\Mode\Listeners\LogDemoReset;
-use Simtabi\Laranail\Demo\Mode\Sandbox\SandboxContext;
-use Simtabi\Laranail\Demo\Mode\State\ConfigStateStore;
-use Illuminate\Contracts\Cache\Factory as CacheFactory;
-use Simtabi\Laranail\Demo\Mode\Commands\DisableCommand;
+use Simtabi\Laranail\Demo\Mode\Commands\ResetCommand;
 use Simtabi\Laranail\Demo\Mode\Commands\SnapshotCommand;
+use Simtabi\Laranail\Demo\Mode\Commands\StatusCommand;
 use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
+use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
+use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Simtabi\Laranail\Demo\Mode\Doctor\Checks;
 use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
-use Simtabi\Laranail\Demo\Mode\State\DatabaseStateStore;
+use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
 use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
+use Simtabi\Laranail\Demo\Mode\Guards\ConsoleGuard;
 use Simtabi\Laranail\Demo\Mode\Guards\EloquentWriteGuard;
-use Simtabi\Laranail\Demo\Mode\Http\Middleware\BypassDemo;
-use Simtabi\Laranail\Demo\Mode\License\NullLicenseGateway;
-use Simtabi\Laranail\Demo\Mode\Http\Middleware\DemoSandbox;
-use Simtabi\Laranail\Demo\Mode\Listeners\LogBlockedAttempt;
-use Simtabi\Laranail\Demo\Mode\Http\Middleware\DemoAutoLogin;
-use Simtabi\Laranail\Demo\Mode\Listeners\SyncDemoWithLicense;
 use Simtabi\Laranail\Demo\Mode\Guards\WriteBlockingConnection;
+use Simtabi\Laranail\Demo\Mode\Http\Middleware\BlockDemoFeature;
+use Simtabi\Laranail\Demo\Mode\Http\Middleware\BypassDemo;
+use Simtabi\Laranail\Demo\Mode\Http\Middleware\DemoAutoLogin;
+use Simtabi\Laranail\Demo\Mode\Http\Middleware\DemoSandbox;
 use Simtabi\Laranail\Demo\Mode\Http\Middleware\EnsureDemoMode;
-use Simtabi\Laranail\Demo\Mode\License\VerifierLicenseGateway;
+use Simtabi\Laranail\Demo\Mode\Http\Middleware\EnsureDemoReadOnly;
 use Simtabi\Laranail\Demo\Mode\Http\Middleware\EphemeralWrites;
 use Simtabi\Laranail\Demo\Mode\Http\Middleware\GuardDemoAction;
-use Simtabi\Laranail\Demo\Mode\Http\Middleware\BlockDemoFeature;
 use Simtabi\Laranail\Demo\Mode\Http\Middleware\GuardSideEffects;
 use Simtabi\Laranail\Demo\Mode\Http\Middleware\InjectDemoBanner;
-use Simtabi\Laranail\Demo\Mode\Http\Middleware\EnsureDemoReadOnly;
+use Simtabi\Laranail\Demo\Mode\License\NullLicenseGateway;
+use Simtabi\Laranail\Demo\Mode\License\VerifierLicenseGateway;
+use Simtabi\Laranail\Demo\Mode\Listeners\LogBlockedAttempt;
+use Simtabi\Laranail\Demo\Mode\Listeners\LogDemoReset;
+use Simtabi\Laranail\Demo\Mode\Listeners\SyncDemoWithLicense;
+use Simtabi\Laranail\Demo\Mode\Sandbox\SandboxContext;
+use Simtabi\Laranail\Demo\Mode\State\CacheStateStore;
+use Simtabi\Laranail\Demo\Mode\State\ConfigStateStore;
+use Simtabi\Laranail\Demo\Mode\State\DatabaseStateStore;
+use Simtabi\Laranail\Package\Tools\Package;
 use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
 use Simtabi\Laranail\Package\Tools\Support\Definitions\AboutSectionDefinition;
 
@@ -137,7 +137,7 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         $listener = SyncDemoWithLicense::class;
 
         $map = [
-            'Simtabi\Laranail\Licence\Verifier\Events\LicenseActivated'   => 'activated',
+            'Simtabi\Laranail\Licence\Verifier\Events\LicenseActivated' => 'activated',
             'Simtabi\Laranail\Licence\Verifier\Events\LicenseDeactivated' => 'deactivated',
         ];
 
@@ -158,9 +158,9 @@ final class DemoModeServiceProvider extends PackageServiceProvider
         $events = $this->app['events'];
 
         $operations = [
-            'creating'  => 'create',
-            'updating'  => 'update',
-            'deleting'  => 'delete',
+            'creating' => 'create',
+            'updating' => 'update',
+            'deleting' => 'delete',
             'restoring' => 'restore',
         ];
 
@@ -179,8 +179,8 @@ final class DemoModeServiceProvider extends PackageServiceProvider
     {
         $this->app->singleton(StateStore::class, static fn (Container $app): StateStore => match ((string) config('demo-mode.state.store', 'cache')) {
             'database' => new DatabaseStateStore($app->make(ConnectionResolverInterface::class)),
-            'config'   => new ConfigStateStore,
-            default    => new CacheStateStore($app->make(CacheFactory::class)),
+            'config' => new ConfigStateStore,
+            default => new CacheStateStore($app->make(CacheFactory::class)),
         });
     }
 

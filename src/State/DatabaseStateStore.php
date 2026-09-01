@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\State;
 
-use Throwable;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\ConnectionResolverInterface;
+use Illuminate\Database\Query\Builder;
 use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
+use Throwable;
 
 /**
  * Persists the override in the demo_state table. Reads are resilient: when the

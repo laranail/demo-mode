@@ -7,9 +7,9 @@ namespace Simtabi\Laranail\Demo\Mode\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Symfony\Component\HttpFoundation\Response;
-use Simtabi\Laranail\Demo\Mode\Support\BlockResponder;
 use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
+use Simtabi\Laranail\Demo\Mode\Support\BlockResponder;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Blocks a route when the named demo feature is disabled. Alias: `demo.feature`.
