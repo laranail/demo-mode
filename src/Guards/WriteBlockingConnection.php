@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Guards;
 
-use Illuminate\Contracts\Container\Container;
+use Throwable;
 use Illuminate\Database\DatabaseManager;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Illuminate\Contracts\Container\Container;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
-use Throwable;
 
 /**
  * Strict, airtight write blocking. Registers a beforeExecuting hook on the

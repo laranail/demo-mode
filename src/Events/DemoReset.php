@@ -11,7 +11,7 @@ final readonly class DemoReset
     use Dispatchable;
 
     /**
-     * @param  list<string>  $scope  the scopes that were reset (database, files, ...)
+     * @param list<string> $scope the scopes that were reset (database, files, ...)
      */
     public function __construct(
         public string $strategy,

@@ -24,12 +24,12 @@ final readonly class DemoBanner
     public function data(): array
     {
         return [
-            'message' => config('demo-mode.banner.message') ?? __('laranail-demo-mode::banner.message'),
-            'position' => (string) config('demo-mode.banner.position', 'top'),
-            'dismissible' => (bool) config('demo-mode.banner.dismissible', true),
-            'reset_in' => $this->secondsUntilReset(),
+            'message'         => config('demo-mode.banner.message') ?? __('laranail-demo-mode::banner.message'),
+            'position'        => (string) config('demo-mode.banner.position', 'top'),
+            'dismissible'     => (bool) config('demo-mode.banner.dismissible', true),
+            'reset_in'        => $this->secondsUntilReset(),
             'expires_in_days' => $this->license->isPresent() ? $this->license->expiresInDays() : null,
-            'cta' => (array) config('demo-mode.banner.cta', []),
+            'cta'             => (array) config('demo-mode.banner.cta', []),
         ];
     }
 

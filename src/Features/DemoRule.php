@@ -32,7 +32,7 @@ final class DemoRule
     private array $attributes = [];
 
     /**
-     * @param  class-string  $class
+     * @param class-string $class
      */
     public static function for(string $class): self
     {

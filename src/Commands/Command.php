@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Commands;
 
+use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Console\Tools\Commands\Command as ConsoleCommand;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
-use Simtabi\Laranail\Demo\Mode\DemoMode;
 
 /**
  * Base command for laranail/demo-mode. Enables the `laranail::demo-mode.*`
