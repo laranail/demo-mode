@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Reset;
 
-use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\ConnectionResolverInterface;
 use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 

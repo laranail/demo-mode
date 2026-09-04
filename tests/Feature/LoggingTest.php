@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
 use Simtabi\Laranail\Demo\Mode\Facades\Demo;
+use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
 
 beforeEach(function (): void {
     config()->set('demo-mode.trigger', 'manual');

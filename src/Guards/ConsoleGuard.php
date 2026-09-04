@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Guards;
 
-use Illuminate\Console\Events\CommandStarting;
-use Illuminate\Contracts\Container\Container;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Console\Events\CommandStarting;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 
 /**
@@ -35,7 +35,7 @@ final class ConsoleGuard
             }
 
             if (in_array($command, (array) config('demo-mode.console.protected', []), true)) {
-                throw DemoModeException::actionBlocked('command:'.$command);
+                throw DemoModeException::actionBlocked('command:' . $command);
             }
         });
     }

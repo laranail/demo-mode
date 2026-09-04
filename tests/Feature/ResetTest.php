@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Event;
-use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
-use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
-use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 use Simtabi\Laranail\Demo\Mode\Facades\Demo;
+use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
+use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
+use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 
 /**
  * Spy strategy so the reset pipeline is exercised without really running

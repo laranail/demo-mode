@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\Demo\Mode\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
