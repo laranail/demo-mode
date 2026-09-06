@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Reset;
 
-use Illuminate\Contracts\Cache\Repository as CacheRepository;
-use Illuminate\Contracts\Console\Kernel as Artisan;
-use Illuminate\Contracts\Foundation\Application;
+use Throwable;
 use Illuminate\Database\Connection;
-use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Support\Facades\File;
-use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
-use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
+use Illuminate\Contracts\Foundation\Application;
 use Simtabi\Laranail\Demo\Mode\Events\DemoReset;
+use Illuminate\Contracts\Console\Kernel as Artisan;
+use Illuminate\Database\ConnectionResolverInterface;
+use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
 use Simtabi\Laranail\Demo\Mode\Events\DemoResetting;
+use Simtabi\Laranail\Demo\Mode\Contracts\ResetStrategy;
 use Simtabi\Laranail\Demo\Mode\Events\DemoSnapshotCreated;
 use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
-use Throwable;
+use Illuminate\Contracts\Cache\Repository as CacheRepository;
 
 /**
  * Orchestrates a demo reset: safety gate → lock → (database via strategy, files,
@@ -96,7 +96,7 @@ final readonly class ResetManager
 
     private function strategy(string $name): ResetStrategy
     {
-        $binding = 'demo-mode.reset.strategy.'.$name;
+        $binding = 'demo-mode.reset.strategy.' . $name;
 
         if ($this->app->bound($binding)) {
             return $this->app->make($binding);
@@ -104,11 +104,11 @@ final readonly class ResetManager
 
         return match ($name) {
             'migrate-fresh-seed' => $this->app->make(MigrateFreshSeedStrategy::class),
-            'snapshot' => $this->app->make(SnapshotStrategy::class),
-            'sql-dump' => $this->app->make(SqlDumpStrategy::class),
-            'backup-restore' => $this->app->make(BackupRestoreStrategy::class),
-            'callback' => $this->app->make(CallbackStrategy::class),
-            default => throw DemoModeException::resetRefused("unknown reset strategy [{$name}]"),
+            'snapshot'           => $this->app->make(SnapshotStrategy::class),
+            'sql-dump'           => $this->app->make(SqlDumpStrategy::class),
+            'backup-restore'     => $this->app->make(BackupRestoreStrategy::class),
+            'callback'           => $this->app->make(CallbackStrategy::class),
+            default              => throw DemoModeException::resetRefused("unknown reset strategy [{$name}]"),
         };
     }
 
@@ -153,7 +153,7 @@ final readonly class ResetManager
 
     private function truncate(string $driverConfig, string $table): bool
     {
-        if (config($driverConfig.'.driver') !== 'database') {
+        if (config($driverConfig . '.driver') !== 'database') {
             return false;
         }
 

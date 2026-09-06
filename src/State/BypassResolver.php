@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\State;
 
+use Throwable;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Contracts\Container\Container;
-use Throwable;
 
 /**
  * Decides whether the current actor is exempt from demo restrictions
@@ -33,7 +33,7 @@ final readonly class BypassResolver
 
     private function config(string $key): mixed
     {
-        return config('demo-mode.bypass.'.$key);
+        return config('demo-mode.bypass.' . $key);
     }
 
     private function byIp(): bool

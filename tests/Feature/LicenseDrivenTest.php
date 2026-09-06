@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Demo\Mode\Facades\Demo;
+use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 
 /**
  * In-memory license gateway so the license-driven path is testable without the

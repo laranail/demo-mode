@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Reset;
 
-use Illuminate\Contracts\Cache\Factory as CacheFactory;
-use Illuminate\Contracts\Cache\LockProvider;
-use Illuminate\Contracts\Cache\Repository;
 use Throwable;
+use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Contracts\Cache\LockProvider;
+use Illuminate\Contracts\Cache\Factory as CacheFactory;
 
 /**
  * Guards against concurrent or over-eager resets using an atomic cache lock

@@ -6,17 +6,17 @@ namespace Simtabi\Laranail\Demo\Mode;
 
 use Closure;
 use Illuminate\Contracts\Container\Container;
-use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
-use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
-use Simtabi\Laranail\Demo\Mode\Events\DemoModeDisabled;
-use Simtabi\Laranail\Demo\Mode\Events\DemoModeEnabled;
-use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
-use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
-use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
-use Simtabi\Laranail\Demo\Mode\Features\FeatureRegistry;
-use Simtabi\Laranail\Demo\Mode\Reset\ResetManager;
-use Simtabi\Laranail\Demo\Mode\State\BypassResolver;
 use Simtabi\Laranail\Demo\Mode\State\DemoState;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRule;
+use Simtabi\Laranail\Demo\Mode\Reset\ResetManager;
+use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
+use Simtabi\Laranail\Demo\Mode\State\BypassResolver;
+use Simtabi\Laranail\Demo\Mode\Events\DemoModeEnabled;
+use Simtabi\Laranail\Demo\Mode\Events\DemoModeDisabled;
+use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
+use Simtabi\Laranail\Demo\Mode\Features\FeatureRegistry;
+use Simtabi\Laranail\Demo\Mode\Features\DemoRuleRegistry;
+use Simtabi\Laranail\Demo\Mode\Exceptions\DemoModeException;
 
 /**
  * Central entry point for demo mode — the target of the {@see Demo} facade.
@@ -121,7 +121,8 @@ final class DemoMode
      *
      * @template T
      *
-     * @param  Closure(): T  $callback
+     * @param Closure(): T $callback
+     *
      * @return T
      */
     public function withoutGuards(Closure $callback): mixed
@@ -165,7 +166,7 @@ final class DemoMode
     /**
      * Begin a fluent per-model write rule.
      *
-     * @param  class-string  $class
+     * @param class-string $class
      */
     public function rule(string $class): DemoRule
     {
@@ -219,12 +220,12 @@ final class DemoMode
     /**
      * Apply dotted config overrides and re-resolve state.
      *
-     * @param  array<string, mixed>  $overrides
+     * @param array<string, mixed> $overrides
      */
     public function configure(array $overrides): self
     {
         foreach ($overrides as $key => $value) {
-            config()->set('demo-mode.'.$key, $value);
+            config()->set('demo-mode.' . $key, $value);
         }
 
         return $this->flushState();

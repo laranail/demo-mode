@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\State;
 
-use Illuminate\Contracts\Cache\Factory as CacheFactory;
+use Throwable;
 use Illuminate\Contracts\Cache\Repository;
 use Simtabi\Laranail\Demo\Mode\Contracts\StateStore;
-use Throwable;
+use Illuminate\Contracts\Cache\Factory as CacheFactory;
 
 /**
  * Persists the override in the cache so it is shared across requests/processes.

@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Listeners;
 
-use Illuminate\Support\Facades\Auth;
+use Throwable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Simtabi\Laranail\Demo\Mode\DemoMode;
 use Simtabi\Laranail\Demo\Mode\Events\DemoActionBlocked;
-use Throwable;
 
 /**
  * Records blocked attempts to the demo_blocked_logs table (and optionally a log
@@ -31,10 +31,10 @@ final readonly class LogBlockedAttempt
         }
 
         $row = [
-            'type' => $event->type,
-            'target' => $event->target,
-            'actor' => $this->actor(),
-            'ip' => $this->ip(),
+            'type'       => $event->type,
+            'target'     => $event->target,
+            'actor'      => $this->actor(),
+            'ip'         => $this->ip(),
             'created_at' => now(),
         ];
 

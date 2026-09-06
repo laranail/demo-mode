@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\Demo\Mode\Policies;
 
-use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\Str;
+use Illuminate\Contracts\Container\Container;
 use Simtabi\Laranail\Demo\Mode\Contracts\DemoPolicy;
 use Simtabi\Laranail\Demo\Mode\Contracts\LicenseGateway;
 
@@ -40,8 +40,8 @@ final readonly class LicenseDemoPolicy implements DemoPolicy
 
         return match ($mode) {
             'unlicensed' => in_array($this->license->status(), ['none', 'unactivated'], true),
-            'callback' => $this->viaCallback(),
-            default => ! $this->license->isUsable(),
+            'callback'   => $this->viaCallback(),
+            default      => ! $this->license->isUsable(),
         };
     }
 

@@ -38,8 +38,8 @@ final readonly class InjectDemoBanner
         ])->render();
 
         $content = str_contains($content, '</body>')
-            ? str_replace('</body>', $html.'</body>', $content)
-            : $content.$html;
+            ? str_replace('</body>', $html . '</body>', $content)
+            : $content . $html;
 
         $response->setContent($content);
         $response->headers->remove('Content-Length');
