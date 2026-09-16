@@ -10,11 +10,6 @@ final class EnableCommand extends Command
 
     protected $description = 'Enable demo mode (runtime override)';
 
-    /**
-     * @var list<string>
-     */
-    protected array $commandAliases = ['demo:enable'];
-
     public function handle(): int
     {
         $this->demo()->enable();

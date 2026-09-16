@@ -1,6 +1,6 @@
 # Reset & restore
 
-`Demo::reset()` (or `php artisan demo:reset`) restores the demo to its baseline.
+`Demo::reset()` (or `php artisan laranail::demo-mode.reset`) restores the demo to its baseline.
 
 ## Strategies (`reset.strategy`)
 
@@ -42,10 +42,10 @@ A `ResetLock` (+ `reset.min_interval`) prevents concurrent/over-eager resets.
 ## Snapshot the baseline
 
 ```bash
-php artisan demo:snapshot   # requires spatie/laravel-db-snapshots
+php artisan laranail::demo-mode.snapshot   # requires spatie/laravel-db-snapshots
 ```
 
-`demo:reset` and `demo:snapshot` are the short aliases of `laranail::demo-mode.reset` /
+`laranail::demo-mode.reset` and `laranail::demo-mode.snapshot` are the short aliases of `laranail::demo-mode.reset` /
 `laranail::demo-mode.snapshot` — see [Commands](commands.md).
 
 ---

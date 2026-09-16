@@ -13,9 +13,6 @@ final class DoctorCommand extends Command
 
     protected $description = 'Diagnose the demo-mode configuration and environment';
 
-    /** @var list<string> */
-    protected array $commandAliases = ['demo:doctor'];
-
     public function handle(): int
     {
         return DoctorReporter::render($this, Checks::all(), (bool) $this->option('json'));

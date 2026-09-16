@@ -14,11 +14,6 @@ final class ResetCommand extends Command
 
     protected $description = 'Reset the demo to its baseline (data, files, cache)';
 
-    /**
-     * @var list<string>
-     */
-    protected array $commandAliases = ['demo:reset'];
-
     public function handle(): int
     {
         if (! $this->option('force')

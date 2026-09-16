@@ -12,11 +12,6 @@ final class SnapshotCommand extends Command
 
     protected $description = 'Capture the current database as the demo baseline snapshot';
 
-    /**
-     * @var list<string>
-     */
-    protected array $commandAliases = ['demo:snapshot'];
-
     public function handle(): int
     {
         try {
