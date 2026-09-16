@@ -10,11 +10,6 @@ final class DisableCommand extends Command
 
     protected $description = 'Disable demo mode (runtime override)';
 
-    /**
-     * @var list<string>
-     */
-    protected array $commandAliases = ['demo:disable'];
-
     public function handle(): int
     {
         $this->demo()->disable();

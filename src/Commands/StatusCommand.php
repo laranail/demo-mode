@@ -10,11 +10,6 @@ final class StatusCommand extends Command
 
     protected $description = 'Show the current demo-mode status';
 
-    /**
-     * @var list<string>
-     */
-    protected array $commandAliases = ['demo:status'];
-
     public function handle(): int
     {
         $demo = $this->demo();

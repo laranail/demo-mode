@@ -5,17 +5,17 @@ Six Artisan commands manage demo mode at the console — canonically named
 
 | Command | Alias | Purpose |
 |---------|-------|---------|
-| `laranail::demo-mode.enable` | `demo:enable` | Enable demo mode (runtime override). |
-| `laranail::demo-mode.disable` | `demo:disable` | Disable demo mode (runtime override). |
-| `laranail::demo-mode.status` | `demo:status` | Show the current demo-mode status. |
-| `laranail::demo-mode.reset` | `demo:reset` | Reset the demo to its baseline (data, files, cache). |
-| `laranail::demo-mode.snapshot` | `demo:snapshot` | Capture the current database as the demo baseline snapshot. |
-| `laranail::demo-mode.doctor` | `demo:doctor` | Diagnose the demo-mode configuration and environment. |
+| `laranail::demo-mode.enable` | `laranail::demo-mode.enable` | Enable demo mode (runtime override). |
+| `laranail::demo-mode.disable` | `laranail::demo-mode.disable` | Disable demo mode (runtime override). |
+| `laranail::demo-mode.status` | `laranail::demo-mode.status` | Show the current demo-mode status. |
+| `laranail::demo-mode.reset` | `laranail::demo-mode.reset` | Reset the demo to its baseline (data, files, cache). |
+| `laranail::demo-mode.snapshot` | `laranail::demo-mode.snapshot` | Capture the current database as the demo baseline snapshot. |
+| `laranail::demo-mode.doctor` | `laranail::demo-mode.doctor` | Diagnose the demo-mode configuration and environment. |
 
 ```bash
-php artisan demo:enable
-php artisan demo:status
-php artisan demo:reset --force
+php artisan laranail::demo-mode.enable
+php artisan laranail::demo-mode.status
+php artisan laranail::demo-mode.reset --force
 ```
 
 ## Options & arguments

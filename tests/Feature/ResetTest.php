@@ -84,6 +84,6 @@ it('re-establishes the demo override after a reset', function (): void {
 
 it('exposes status + toggles via the CLI', function (): void {
     $this->artisan('laranail::demo-mode.enable')->assertSuccessful();
-    $this->artisan('demo:status')->assertSuccessful();
+    $this->artisan('laranail::demo-mode.status')->assertSuccessful();
     $this->artisan('laranail::demo-mode.disable')->assertSuccessful();
 });
