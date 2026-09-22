@@ -1,9 +1,10 @@
 # laranail/demo-mode
 
-[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/demo-mode.svg)](https://packagist.org/packages/laranail/demo-mode)
 [![Tests](https://github.com/laranail/demo-mode/actions/workflows/tests.yml/badge.svg)](https://github.com/laranail/demo-mode/actions/workflows/tests.yml)
 [![Static analysis](https://github.com/laranail/demo-mode/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/laranail/demo-mode/actions/workflows/static-analysis.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+`laranail/demo-mode` is not published to Packagist, so there is no registry-version badge to show — see [Install](#install).
 
 > A granular, license-aware demo / sandbox controller for Laravel products — block writes, gate features, reset data periodically, isolate visitors, auto-login, and show a banner, all configurable with sensible defaults.
 
