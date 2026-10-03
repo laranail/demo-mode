@@ -14,12 +14,28 @@ Requires PHP `^8.4 || ^8.5` on Laravel `^13`. Complements [`laranail/license-ver
 
 ```bash
 composer require laranail/demo-mode
-php artisan vendor:publish --tag="demo-mode-config"
+php artisan vendor:publish --tag="laranail::demo-mode-config"
 ```
 
 The service provider and the `Demo` facade are auto-discovered.
 
-## Quick start
+## Quick start guide and usage
+
+### Getting started
+
+1. Publish the banner and blocked views if you want to customise them:
+   `php artisan vendor:publish --tag="laranail::demo-mode-views"`.
+2. If state is stored in the database (`DEMO_MODE_STATE_STORE=database`; the default is `cache`),
+   publish the migrations and run them:
+
+   ```bash
+   php artisan vendor:publish --tag="laranail::demo-mode-migrations"
+   php artisan migrate
+   ```
+
+3. If you use scheduled resets, make sure the Laravel scheduler runs on the host.
+
+### Usage
 
 Turn demo mode on (or drive it from the license):
 
