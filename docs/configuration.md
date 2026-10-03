@@ -5,7 +5,7 @@ Every section of `config/demo-mode.php` — env-driven (`DEMO_MODE_*`) with runt
 Publish `config/demo-mode.php`:
 
 ```bash
-php artisan vendor:publish --tag="demo-mode-config"
+php artisan vendor:publish --tag="laranail::demo-mode-config"
 ```
 
 Every key has a default and may be overridden at runtime with `config()->set(...)`

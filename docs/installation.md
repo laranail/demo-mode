@@ -9,10 +9,10 @@ composer require laranail/demo-mode
 The service provider is auto-discovered. Publish what you need:
 
 ```bash
-php artisan vendor:publish --tag="demo-mode-config"      # config/demo-mode.php
-php artisan vendor:publish --tag="demo-mode-views"       # banner / blocked views
-php artisan vendor:publish --tag="demo-mode-migrations"  # only if state.store = database
-php artisan migrate                                       # only if you published migrations
+php artisan vendor:publish --tag="laranail::demo-mode-config"     # config/demo-mode.php
+php artisan vendor:publish --tag="laranail::demo-mode-views"      # banner / blocked views
+php artisan vendor:publish --tag="laranail::demo-mode-migrations" # only if state.store = database
+php artisan migrate                                               # only if you published migrations
 ```
 
 ## Requirements
