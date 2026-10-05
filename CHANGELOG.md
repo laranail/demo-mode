@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `laravel/framework ^13.0` is now declared in `require`. `src/` uses `Dispatchable` from `Illuminate\Foundation`, which no `illuminate/*` component ships, so the dependency only arrived through the host application.
 - **The on-demand reset route is named `laranail-demo-mode.reset`**, was `demo-mode.reset`. Route
   names share one flat registry with the host and every other package, so a bare name could be
   silently replaced. The URL (`POST {prefix}/reset`) is unchanged. Requires
