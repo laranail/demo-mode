@@ -13,6 +13,6 @@ if ((bool) config('demo-mode.routes.enabled', true)) {
         ->group(function () use ($throttle): void {
             Route::post('reset', [DemoController::class, 'reset'])
                 ->middleware('throttle:' . $throttle)
-                ->name('demo-mode.reset');
+                ->name('laranail-demo-mode.reset');
         });
 }
