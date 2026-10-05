@@ -37,7 +37,13 @@ A `ResetLock` (+ `reset.min_interval`) prevents concurrent/over-eager resets.
 
 - **Scheduled** — set `reset.schedule` (and run the host scheduler).
 - **On demand** — enable `reset.on_demand`; `POST {prefix}/reset` (CSRF + throttled +
-  optional Gate) runs a reset. Wire a "Reset demo" button to it.
+  optional Gate) runs a reset. Wire a "Reset demo" button to it with
+  `route('laranail-demo-mode.reset')`.
+
+> The route was named `demo-mode.reset` before 0.1. That name is a deprecated alias: `route()` still
+> generates the same URL and raises one `E_USER_DEPRECATED` notice, until the next minor after 0.1.
+> `Route::has('demo-mode.reset')` and `routeIs('demo-mode.*')` read the route collection directly
+> and answer false, so check `laranail-demo-mode.reset` there.
 
 ## Snapshot the baseline
 

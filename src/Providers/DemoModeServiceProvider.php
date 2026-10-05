@@ -62,6 +62,9 @@ final class DemoModeServiceProvider extends PackageServiceProvider
             ->hasTranslations('laranail-demo-mode')
             ->hasViews('laranail-demo-mode')
             ->hasRoute('web')
+            // `demo-mode.reset` was this route's name until 0.1; it keeps resolving, with a
+            // deprecation notice, until the next minor after 0.1.
+            ->hasDeprecatedRouteNames(map: ['demo-mode.reset' => 'laranail-demo-mode.reset'])
             ->hasMigrations([
                 'create_demo_state_table',
                 'create_demo_blocked_logs_table',
